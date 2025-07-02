@@ -14,10 +14,11 @@ export default function RepositoryCard() {
           Updated 37 minutes ago
         </p>
       </div>
-      <div className="absolute flex flex-row place-items-start items-center gap-20 ml-4 mt-30 border-2 border-[#3d444d] bg-[#212830] rounded-lg h-10 w-30">
-        <FaRegStar className="text-[#9198A1] w-5 h-5 flex" />
-        <IoMdArrowDropdown className="text-[#9198A1] w-5 h-5 flex" />
-      </div>
+      <button className="absolute flex flex-row place-items-start items-center gap-20 ml-4 mt-30 border-2 border-[#3d444d] bg-[#212830] rounded-lg h-10 w-30">
+        <FaRegStar className="text-[#9198A1] w-5 h-5 gap-2 flex" />
+        {/* <p className="text-[#9198A1]">Star</p> */}
+        <IoMdArrowDropdown className="text-[#9198A1] w-5 h-5 gap-2 flex" />
+      </button>
     </div>
   );
 }
