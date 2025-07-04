@@ -3,7 +3,7 @@ import { IoMdArrowDropdown } from "react-icons/io";
 
 export default function RepositoryCard() {
   return (
-    <div className="flex border-2 border-[#3d444d] bg-[#212830] rounded-2xl h-50 w-80">
+    <div className="flex flex-col border-2 border-[#3d444d] bg-[#212830] rounded-2xl h-50 w-80">
       <h2 className="h-fit p-2 text-[#418BE6] font-semibold text-2xl mt-5 ml-4">
         Projeto
       </h2>
