@@ -1,5 +1,8 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
+## Figma Prototype
+https://www.figma.com/proto/AxVDbpDHpv3zaBVoG78gwU/Github-Redesign?node-id=1-5&t=XBU0wx2bNnIkj6oJ-1&scaling=scale-down&content-scaling=fixed&page-id=0%3A1
+
 ## Getting Started
 
 First, run the development server:
