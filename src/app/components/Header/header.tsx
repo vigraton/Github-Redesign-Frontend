@@ -8,7 +8,7 @@ export default function Header() {
   const pathname = usePathname();
 
   return (
-    <div className="bg-[#151b23] w-full h-28 fixed top-0">
+    <div className="bg-[#151b23] w-full h-28 fixed top-0 z-10">
       <div className="flex flex-row justify-between items-center pl-6 pr-6 pt-4">
         <div className="flex flex-row gap-2 items-center">
           <Image src="/github.png" alt="github icon" width={30} height={30} />
