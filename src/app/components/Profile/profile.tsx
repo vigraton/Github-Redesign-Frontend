@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { FiEdit2 } from 'react-icons/fi';
 
 export default function Profile() {
   return (
@@ -16,8 +17,8 @@ export default function Profile() {
         <div className="flex flex-row items-center gap-12">
           <h3 className="font-semibold text-[24px] pt-4">Vivian Graton</h3>
           <div className="pt-4">
-            <button className="text-[14px] cursor-pointer items-center justify-center font-semibold border border-[#3D444D] rounded bg-[#2A313C] w-24 h-8">
-              Edit Profile
+            <button className="cursor-pointer items-center justify-center border border-[#3D444D] rounded-[6px] bg-[#2A313C] w-8 h-8">
+              <FiEdit2 className="flex translate-x-1/2"/>
             </button>
           </div>
         </div>
