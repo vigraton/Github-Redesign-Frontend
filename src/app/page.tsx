@@ -8,16 +8,19 @@ export default function Home() {
       id: 1,
       title: "GitHub Redesign",
       language: "TypeScript",
+      updated: "2 minutes ago"
     },
     {
       id: 2,
       title: "Mimimi",
       language: "Go",
+      updated: "4 months ago"
     },
     {
       id: 3,
       title: "Momomo",
       language: "Java",
+      updated: "Updated now"
     },
   ];
 
