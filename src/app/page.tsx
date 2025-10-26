@@ -1,6 +1,6 @@
 import RepositoryCard from "../app/components/RepositoryCard/card";
 import Header from "../app/components/Header/header";
-import Profile from "../app/components/Profile/profile";
+// import Profile from "../app/components/Profile/profile";
 
 export default function Home() {
   const profile = {

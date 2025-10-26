@@ -23,14 +23,12 @@ type RepoCardProps = {
   language: string;
   updatedAt: string;
   isPrivate?: boolean;
-  className?: string;
 };
 
 export default function RepositoryCard({
   title,
   language,
   updatedAt,
-  className = "",
 }: RepoCardProps) {
   const languageColor = LANGUAGE_COLORS[language] || "#9198A1";
 
