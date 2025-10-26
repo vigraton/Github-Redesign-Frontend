@@ -3,13 +3,13 @@ import Header from "../app/components/Header/header";
 // import Profile from "../app/components/Profile/profile";
 
 export default function Home() {
-  const profile = {
-    name: "Vivian Graton",
-    username: "vigraton",
-    followers: 11,
-    following: 16,
-    location: "SP, Brasil"
-  }
+  // const profile = {
+  //   name: "Vivian Graton",
+  //   username: "vigraton",
+  //   followers: 11,
+  //   following: 16,
+  //   location: "SP, Brasil"
+  // }
 
   const repos = [
     {
