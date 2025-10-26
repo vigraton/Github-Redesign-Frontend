@@ -3,24 +3,32 @@ import Header from "../app/components/Header/header";
 import Profile from "../app/components/Profile/profile";
 
 export default function Home() {
+  const profile = {
+    name: "Vivian Graton",
+    username: "vigraton",
+    followers: 11,
+    following: 16,
+    location: "SP, Brasil"
+  }
+
   const repos = [
     {
       id: 1,
       title: "GitHub Redesign",
       language: "TypeScript",
-      updated: "2 minutes ago"
+      updatedAt: "2 minutes ago",
     },
     {
       id: 2,
       title: "Mimimi",
       language: "Go",
-      updated: "4 months ago"
+      updatedAt: "4 months ago"
     },
     {
       id: 3,
       title: "Momomo",
       language: "Java",
-      updated: "Updated now"
+      updatedAt: "Updated now"
     },
   ];
 
@@ -35,7 +43,7 @@ export default function Home() {
         </div>
       </div>
       <div className="absolute justify-start px-[12%] py-[8.5%] top-0">
-        <Profile />
+        {/* <Profile /> */}
       </div>
     </>
   );
