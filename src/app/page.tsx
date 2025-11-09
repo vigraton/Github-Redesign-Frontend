@@ -1,15 +1,16 @@
 import RepositoryCard from "../app/components/RepositoryCard/card";
 import Header from "../app/components/Header/header";
-// import Profile from "../app/components/Profile/profile";
+import Profile from "../app/components/Profile/profile";
 
 export default function Home() {
-  // const profile = {
-  //   name: "Vivian Graton",
-  //   username: "vigraton",
-  //   followers: 11,
-  //   following: 16,
-  //   location: "SP, Brasil"
-  // }
+  const profile = {
+    name: "Vivian Graton",
+    username: "vigraton",
+    followers: 11,
+    following: 16,
+    location: "SP, Brasil",
+    company: "Valint Group Brasil",
+  };
 
   const repos = [
     {
@@ -22,28 +23,27 @@ export default function Home() {
       id: 2,
       title: "Mimimi",
       language: "Go",
-      updatedAt: "4 months ago"
+      updatedAt: "4 months ago",
     },
     {
       id: 3,
       title: "Momomo",
       language: "Java",
-      updatedAt: "Updated now"
+      updatedAt: "Updated now",
     },
   ];
 
   return (
     <>
-      <div className="flex flex-col items-center min-h-screen">
-        <Header />
-        <div className="flex flex-row gap-4 translate-x-40">
+      <Header />
+
+      <div className="grid grid-cols-2 mt-2 px-3">
+        <Profile {...profile} />
+        <div className="flex flex-row gap-[12px]">
           {repos.map((repo) => (
             <RepositoryCard key={repo.id} {...repo} />
           ))}
         </div>
-      </div>
-      <div className="absolute justify-start px-[12%] py-[8.5%] top-0">
-        {/* <Profile /> */}
       </div>
     </>
   );
