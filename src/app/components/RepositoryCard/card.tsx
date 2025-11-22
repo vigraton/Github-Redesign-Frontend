@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { FaRegStar, FaStar } from "react-icons/fa6";
 import { IoMdArrowDropdown } from "react-icons/io";
@@ -36,7 +36,7 @@ export default function RepositoryCard({
 
   const handleStarClick = () => {
     setStarred(!starred);
-  }
+  };
 
   return (
     <div className="flex flex-col translate-y-44 border-2 border-[#3d444d] bg-[#212830] rounded-2xl h-50 w-80">
@@ -44,13 +44,13 @@ export default function RepositoryCard({
         {title}
       </h2>
 
-      <div className="absolute flex flex-row items-center place-items-start p-2 ml-4 mt-16 h-fit">
+      <div className="flex flex-row items-center p-4 text-sm text-[#9198A1] mb-4 justify-between">
         <span
-          className="flex h-3 w-3 rounded-lg"
+          className="flex h-3 w-3 rounded-full flex-shrink-0"
           style={{ backgroundColor: languageColor }}
         ></span>
-        <p className="text-[#9198A1] ml-1">{language}</p>
-        <p className="text-[#9198A1] ml-3 text-nowrap">{updatedAt}</p>
+        <p className="ml-1">{language}</p>
+        <p className="ml-auto text-nowrap">{updatedAt}</p>
       </div>
 
       <button
@@ -62,7 +62,7 @@ export default function RepositoryCard({
         ) : (
           <FaRegStar className="text-[#9198A1] w-5 h-5 ml-2" />
         )}
-        
+
         <IoMdArrowDropdown className="text-[#9198A1] w-5 h-5 gap-2 flex -translate-x-2" />
       </button>
     </div>

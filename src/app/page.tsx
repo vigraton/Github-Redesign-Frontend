@@ -37,12 +37,17 @@ export default function Home() {
     <>
       <Header />
 
-      <div className="grid grid-cols-2 mt-2 px-3">
-        <Profile {...profile} />
-        <div className="flex flex-row gap-[12px]">
-          {repos.map((repo) => (
-            <RepositoryCard key={repo.id} {...repo} />
-          ))}
+      <div className="grid grid-cols-1 lg:grid-cols-3 mt-8 px-8">
+        <div className="lg:col-span-1">
+          <Profile {...profile} />
+        </div>
+
+        <div className="lg:col-span-2">
+          <div className="flex flex-wrap gap-6 justify-start">
+            {repos.map((repo) => (
+              <RepositoryCard key={repo.id} {...repo} />
+            ))}
+          </div>
         </div>
       </div>
     </>
