@@ -1,5 +1,5 @@
-// import { RepositoriesPage } from "./pages/Repositories";
-import  LoginPage  from "./pages/Login";
+//import { RepositoriesPage } from "./pages/repositories/Repositories"; 
+import LoginPage from "./login/page";
 
 export default function Home() {
   return (

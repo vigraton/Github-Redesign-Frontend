@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function LoginPage() {
   return (
     <div
@@ -13,7 +15,15 @@ export default function LoginPage() {
           className="border boder-gray-300 rounded-md h-10 w-60 text-sm px-2"
           placeholder="Password"
         />
-        <button className="bg-[#02003A] cursor-pointer text-sm h-10 w-60 transition-colors rounded-md">Submit</button>
+
+        <Link href={"/repositories"}>
+          <button
+            type="button"
+            className="bg-[#02003A] cursor-pointer text-sm h-10 w-60 transition-colors rounded-md"
+          >
+            Submit
+          </button>
+        </Link>
       </form>
     </div>
   );

@@ -2,7 +2,7 @@ import Header from "../components/Header/header";
 import Profile from "../components/Profile/profile";
 import RepositoryCard from "../components/RepositoryCard/card";
 
-export function RepositoriesPage() {
+export default function RepositoriesPage() {
   const profile = {
     name: "Vivian Graton",
     username: "vigraton",
