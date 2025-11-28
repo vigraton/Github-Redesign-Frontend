@@ -35,6 +35,7 @@ export default function Header() {
         <Link
           href="#"
           className={`text-white text-[14px] rounded-[6px] px-4 py-1 hover:bg-[#212730]`}
+          data-active="true"
         >
           Repositories
         </Link>
