@@ -40,7 +40,7 @@ export default function Header() {
           Repositories
         </Link>
         <Link
-          href="#"
+          href="/repositories"
           className={`text-white text-[14px] rounded-[6px] px-4 py-1 hover:bg-[#212730] ${
             pathname === "/projects" ? "active" : ""
           }`}

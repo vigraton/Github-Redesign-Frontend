@@ -9,11 +9,14 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@hookform/resolvers": "^5.2.2",
     "axios": "^1.10.0",
     "next": "15.3.4",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "react-icons": "^5.5.0"
+    "react-hook-form": "^7.67.0",
+    "react-icons": "^5.5.0",
+    "zod": "^4.1.13"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
