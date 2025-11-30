@@ -18,20 +18,18 @@ const LANGUAGE_COLORS: Record<string, string> = {
   Go: "#00d5ff",
 }; // asmeeeeeiiiii <3
 
-type RepoCardProps = {
-  title: string;
-  language: string;
-  updatedAt: string;
-  isPrivate?: boolean;
+export type RepoCardProps = {
+  responseData: {
+    id: number;
+    name: string;
+    language: string;
+    updatedAt?: string;
+    private?: boolean;
+  };
 };
 
-export default function RepositoryCard({
-  title,
-  language,
-  updatedAt,
-}: RepoCardProps) {
-  const languageColor = LANGUAGE_COLORS[language] || "#9198A1";
-
+export default function RepositoryCard({ responseData }: RepoCardProps) {
+  const languageColor = LANGUAGE_COLORS[responseData.language] || "#9198A1";
   const [starred, setStarred] = useState(false);
 
   const handleStarClick = () => {
@@ -39,9 +37,9 @@ export default function RepositoryCard({
   };
 
   return (
-    <div className="flex flex-col translate-y-44 border-2 border-[#3d444d] bg-[#212830] rounded-2xl h-50 w-80">
-      <h2 className="h-fit p-2 text-[#418BE6] font-semibold text-2xl mt-5 ml-4">
-        {title}
+    <div className="flex flex-col translate-y-44 border-2 border-[#3d444d] bg-[#212830] rounded-2xl h-45 w-75">
+      <h2 className="h-fit p-2 text-[#418BE6] font-semibold text-xl mt-5 ml-4">
+        {responseData.name}
       </h2>
 
       <div className="flex flex-row items-center p-4 text-sm text-[#9198A1] mb-4 justify-between">
@@ -49,8 +47,8 @@ export default function RepositoryCard({
           className="flex h-3 w-3 rounded-full flex-shrink-0"
           style={{ backgroundColor: languageColor }}
         ></span>
-        <p className="ml-1">{language}</p>
-        <p className="ml-auto text-nowrap">{updatedAt}</p>
+        <p className="ml-1">{responseData.language}</p>
+        <p className="ml-auto text-nowrap">{responseData.updatedAt}</p>
       </div>
 
       <button
