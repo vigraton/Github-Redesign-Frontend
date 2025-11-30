@@ -68,9 +68,9 @@ export default function RepositoriesPage() {
 
         <div className="lg:col-span-2">
           {loading ? (
-            <p>Carregando...</p>
+            <p className="text-white text-xs flex justify-center text-center">Carregando...</p>
           ) : repos.length === 0 ? (
-            <p>Nada para ver aqui</p>
+            <p className="text-white text-xs flex justify-center text-center">Nada para ver aqui</p>
           ) : (
             <div className="flex flex-wrap gap-6 justify-start">
               {repos.map((repo) => (
