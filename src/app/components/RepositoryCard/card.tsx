@@ -38,7 +38,7 @@ export default function RepositoryCard({ responseData }: RepoCardProps) {
 
   return (
     <div className="flex flex-col translate-y-44 border-2 border-[#3d444d] bg-[#212830] rounded-2xl h-45 w-75">
-      <h2 className="h-fit p-2 text-[#418BE6] font-semibold text-xl mt-5 ml-4">
+      <h2 className="h-fit p-2 text-wrap line-clamp-2 text-[#418BE6] font-semibold text-xl mt-5 ml-4">
         {responseData.name}
       </h2>
 
@@ -47,7 +47,7 @@ export default function RepositoryCard({ responseData }: RepoCardProps) {
           className="flex h-3 w-3 rounded-full flex-shrink-0"
           style={{ backgroundColor: languageColor }}
         ></span>
-        <p className="ml-1">{responseData.language}</p>
+        <p className="ml-1.5">{responseData.language}</p>
         <p className="ml-auto text-nowrap">{responseData.updatedAt}</p>
       </div>
 
