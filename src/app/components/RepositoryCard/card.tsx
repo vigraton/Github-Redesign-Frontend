@@ -2,6 +2,7 @@
 
 import { FaRegStar, FaStar } from "react-icons/fa6";
 import { IoMdArrowDropdown } from "react-icons/io";
+import { Globe, GlobeLock } from 'lucide-react';
 import { useState } from "react";
 
 const LANGUAGE_COLORS: Record<string, string> = {
@@ -31,6 +32,7 @@ export type RepoCardProps = {
 export default function RepositoryCard({ responseData }: RepoCardProps) {
   const languageColor = LANGUAGE_COLORS[responseData.language] || "#9198A1";
   const [starred, setStarred] = useState(false);
+  const isPrivate = useState(false)
 
   const handleStarClick = () => {
     setStarred(!starred);
@@ -38,9 +40,21 @@ export default function RepositoryCard({ responseData }: RepoCardProps) {
 
   return (
     <div className="flex flex-col translate-y-44 border-2 border-[#3d444d] bg-[#212830] rounded-2xl h-45 w-75">
-      <h2 className="h-fit p-2 text-wrap line-clamp-2 text-[#418BE6] font-semibold text-xl mt-5 ml-4">
-        {responseData.name}
-      </h2>
+      <div className="flex flex-row items-top mt-4 justify-between">
+        <h2 className="h-fit p-2 text-wrap line-clamp-2 text-[#418BE6] font-semibold text-xl ml-4">
+          {responseData.name}
+        </h2>
+
+      {!isPrivate ? (
+        <>
+          <GlobeLock className="text-[#3D444D] mr-4"/>
+        </>
+      ) : (
+        <>
+          <Globe className="text-[#418BE6] mr-4"/>
+        </>
+      )}
+      </div>      
 
       <div className="flex flex-row items-center p-4 text-sm text-[#9198A1] mb-4 justify-between">
         <span
