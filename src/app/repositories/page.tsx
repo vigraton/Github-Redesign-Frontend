@@ -6,7 +6,6 @@ import RepositoryCard from "../components/RepositoryCard/card";
 import { useEffect, useState } from "react";
 import { api } from "../services/repo.api";
 
-// Tipo de dados que vêm do back
 type Repo = {
   id: number;
   name: string;
