@@ -4,6 +4,7 @@ import Header from "../components/Header/header";
 import Profile from "../components/Profile/profile";
 import RepositoryCard from "../components/RepositoryCard/card";
 import { useEffect, useState } from "react";
+import { api } from "../services/repo.api";
 
 // Tipo de dados que vêm do back
 type Repo = {
@@ -13,25 +14,6 @@ type Repo = {
   updateAt: string;
   private: boolean;
 };
-
-// Função para buscar repositórios
-async function getMyRepos() {
-  try {
-    const response = await fetch("https://api.github.com/users/vigraton/repos", {
-      method: "GET",
-      headers: { "Content-Type": "application/json" },
-    });
-
-    if (!response.ok) {
-      throw new Error(`Erro http:${response.status}`);
-    }
-
-    return await response.json();
-  } catch (error) {
-    console.error(error);
-    return [];
-  }
-}
 
 export default function RepositoriesPage() {
   const [repos, setRepos] = useState<Repo[]>([]);
@@ -46,15 +28,14 @@ export default function RepositoriesPage() {
     company: "Valint Group Brasil",
   };
 
-  // Busca repos quando o componente monta
+  async function getRepos() {
+    const response = await api.get();
+    setRepos(response);
+    setLoading(false)
+  }
+
   useEffect(() => {
-    async function fetchRepos() {
-      setLoading(true);
-      const data = await getMyRepos();
-      setRepos(data);
-      setLoading(false);
-    }
-    fetchRepos();
+    getRepos();
   }, []);
 
   return (
@@ -68,9 +49,13 @@ export default function RepositoriesPage() {
 
         <div className="lg:col-span-2">
           {loading ? (
-            <p className="text-white text-xs flex justify-center text-center">Carregando...</p>
+            <p className="text-white text-xs flex justify-center text-center">
+              Carregando...
+            </p>
           ) : repos.length === 0 ? (
-            <p className="text-white text-xs flex justify-center text-center">Nada para ver aqui</p>
+            <p className="text-white text-xs flex justify-center text-center">
+              Nada para ver aqui
+            </p>
           ) : (
             <div className="flex flex-wrap gap-6 justify-start">
               {repos.map((repo) => (
