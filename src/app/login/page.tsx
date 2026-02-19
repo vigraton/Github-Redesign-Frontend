@@ -6,7 +6,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
 
 export default function LoginPage() {
-  // Desestruturação do objeto retornado pelo hook useForm
   const {
     register,
     handleSubmit,
@@ -18,12 +17,6 @@ export default function LoginPage() {
       password: "",
     },
   });
-
-  // É como se fosse:
-  // const form = useForm({...})
-  // const register = form.register
-  // const handleSubmit = form.handleSubmit
-  // const errors = form.formState.errors
 
   const onSubmit = (data: UserSchemaType) => {
     try {
@@ -73,7 +66,6 @@ export default function LoginPage() {
 
           <Link href={"/repositories"}>
             <button
-              onClick={handleSubmit(onSubmit)}
               type="submit"
               className="bg-[#02003A] cursor-pointer text-sm h-10 w-60 transition-colors rounded-md"
             >
