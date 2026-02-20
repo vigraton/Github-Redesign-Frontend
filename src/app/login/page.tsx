@@ -18,13 +18,13 @@ export default function LoginPage() {
     },
   });
 
-  const onSubmit = (data: UserSchemaType) => {
-    try {
-      console.log(data);
-    } catch (error) {
-      console.error(error);
-    }
-  };
+  // const onSubmit = (data: UserSchemaType) => {
+  //   try {
+  //     console.log(data);
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // };
 
   return (
     <>
