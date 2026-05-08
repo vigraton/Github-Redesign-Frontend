@@ -16,7 +16,7 @@ type Repo = {
 
 export default function RepositoriesPage() {
   const [repos, setRepos] = useState<Repo[]>([]);
-  const [loading, setLoading] = useState(false);
+  const [isLoading, setLoading] = useState(false);
 
   const profile = {
     name: "Vivian Graton",
@@ -24,13 +24,18 @@ export default function RepositoriesPage() {
     followers: 11,
     following: 16,
     location: "SP, Brasil",
-    company: "Valint Group Brasil",
+    company: "Valiant Group Brasil",
   };
 
   async function getRepos() {
-    const response = await api.get();
-    setRepos(response);
-    setLoading(false)
+    setLoading(true);
+    try {
+      const response = await api.get();
+      setRepos(response);
+      setLoading(false);
+    } catch (error) {
+      console.error("Error: ", error);
+    }
   }
 
   useEffect(() => {
@@ -41,24 +46,20 @@ export default function RepositoriesPage() {
     <>
       <Header />
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 mt-8 px-6">
+      <div className="grid grid-cols-1 lg:grid-cols-3 mt-8">
         <div className="lg:col-span-1">
           <Profile {...profile} />
         </div>
 
         <div className="lg:col-span-2">
-          {loading ? (
+          {isLoading ? (
             <p className="text-white text-xs flex justify-center text-center">
               Carregando...
-            </p>
-          ) : repos.length === 0 ? (
-            <p className="text-white text-xs flex justify-center text-center">
-              Nada para ver aqui
             </p>
           ) : (
             <div className="flex flex-wrap gap-6 justify-start">
               {repos.map((repo) => (
-                <RepositoryCard key={repo.id} responseData={repo} />
+                <RepositoryCard key={repo.id} data={repo} />
               ))}
             </div>
           )}
