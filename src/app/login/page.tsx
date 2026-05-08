@@ -1,7 +1,7 @@
 "use client";
 
 import { useForm } from "react-hook-form";
-import { userSchema, type UserSchemaType } from "./userValidation";
+import { userSchema, type UserSchemaType } from "./schema/user";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
 
