@@ -2,6 +2,8 @@
 
 import Header from "../components/Header/header";
 import Profile from "../components/Profile/profile";
+import type { ProfileProps } from "../components/Profile/types";
+import { profileApi } from "../services/profile.api";
 import RepositoryCard from "../components/RepositoryCard/card";
 import { useEffect, useState } from "react";
 import { api } from "../services/repo.api";
@@ -17,15 +19,15 @@ type Repo = {
 export default function RepositoriesPage() {
   const [repos, setRepos] = useState<Repo[]>([]);
   const [isLoading, setLoading] = useState(false);
-
-  const profile = {
-    name: "Vivian Graton",
-    username: "vigraton",
-    followers: 11,
-    following: 16,
-    location: "SP, Brasil",
-    company: "Valiant Group Brasil",
-  };
+  const profile: ProfileProps = {
+    name: "",
+    login: "",
+    avatar_url: "",
+    company: "",
+    followers: undefined,
+    following: undefined,
+    location:""
+  }
 
   async function getRepos() {
     setLoading(true);
@@ -57,11 +59,11 @@ export default function RepositoriesPage() {
               Carregando...
             </p>
           ) : (
-            <div className="flex flex-wrap gap-6 justify-start">
-              {repos.map((repo) => (
-                <RepositoryCard key={repo.id} data={repo} />
-              ))}
-            </div>
+          <div className="flex flex-wrap gap-6 justify-start">
+            {repos.map((repo) => (
+              <RepositoryCard key={repo.id} data={repo} />
+            ))}
+          </div>
           )}
         </div>
       </div>

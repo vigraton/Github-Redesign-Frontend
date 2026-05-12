@@ -1,21 +1,49 @@
 import Image from "next/image";
 import { FiEdit2 } from "react-icons/fi";
 import { ProfileProps } from "./types";
+import { profileApi } from "../../services/profile.api";
+import { useEffect } from "react";
 
 export default function Profile({
   name,
-  username,
+  login,
   followers,
   following,
   company,
   location,
+  avatar_url,
 }: ProfileProps) {
+
+  const getAvatar = async () => {
+    try {
+      return await profileApi.getAvatar()
+    } catch (error) {
+      console.error("Avatar error: ", error)
+      throw error
+    }
+  }
+
+  const getProfile = async () => {
+    try {
+      return await profileApi.getProfile()
+    } catch (error) {
+      console.error("GET ERROR: ", error)
+      throw error
+    }
+  }
+
+  useEffect(() => {
+    getAvatar()
+    getProfile()
+  }, [])
+
   return (
     <div className="flex flex-col gap-6 ml-30 mt-40 mb-60">
       <div className="w-[250px] h-[250px] flex-shrink-0">
         <Image
           className="rounded-full object-cover"
-          src="/profile.jpg"
+          //src="/profile.jpg"
+          src={`/${avatar_url}`}
           alt="profile picture"
           width={250}
           height={250}
@@ -32,9 +60,9 @@ export default function Profile({
           </div>
         </div>
 
-        <p className="text-[#889099] text-[18px]">{username}</p>
+        <p className="text-[#889099] text-[18px]">{login}</p>
         <p className="pt-4">
-          {followers} followers - {following} following
+          {followers} followers · {following} following
         </p>
         <p className="pt-4 text-[14px]">{company}</p>
         <p className="text-[14px]">{location}</p>

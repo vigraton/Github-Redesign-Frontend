@@ -10,8 +10,7 @@ async function getMyRepos() {
 
     return await response.json();
   } catch (error) {
-    console.error(error);
-    return [];
+    throw error;
   }
 }
 
