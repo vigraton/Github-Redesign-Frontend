@@ -12,12 +12,11 @@ export const LANGUAGE_COLORS: Record<string, string> = {
   Go: "#00d5ff",
 };
 
-export type RepoCardProps = {
-  data: {
-    id: number;
-    name: string;
-    language: string;
-    updatedAt?: string;
-    private?: boolean;
-  };
-};
+export interface Repository {
+  id: number;
+  name: string;
+  language: string;
+  updateAt: string;
+  isRepoPrivate?: boolean;
+  description?: string;
+}

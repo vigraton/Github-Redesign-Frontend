@@ -3,22 +3,12 @@
 import Header from "../components/Header/header";
 import Profile from "../components/Profile/profile";
 import type { ProfileProps } from "../components/Profile/types";
-import { profileApi } from "../services/profile.api";
 import RepositoryCard from "../components/RepositoryCard/card";
-import { useEffect, useState } from "react";
-import { api } from "../services/repo.api";
-
-type Repo = {
-  id: number;
-  name: string;
-  language: string;
-  updateAt: string;
-  private: boolean;
-};
+import { useEffect } from "react";
+import { useRepos } from "../hooks/useRepos";
 
 export default function RepositoriesPage() {
-  const [repos, setRepos] = useState<Repo[]>([]);
-  const [isLoading, setLoading] = useState(false);
+  const { getRepos, repos } = useRepos();
   const profile: ProfileProps = {
     name: "",
     login: "",
@@ -26,19 +16,8 @@ export default function RepositoriesPage() {
     company: "",
     followers: undefined,
     following: undefined,
-    location:""
-  }
-
-  async function getRepos() {
-    setLoading(true);
-    try {
-      const response = await api.get();
-      setRepos(response);
-      setLoading(false);
-    } catch (error) {
-      console.error("Error: ", error);
-    }
-  }
+    location: "",
+  };
 
   useEffect(() => {
     getRepos();
@@ -54,17 +33,11 @@ export default function RepositoriesPage() {
         </div>
 
         <div className="lg:col-span-2">
-          {isLoading ? (
-            <p className="text-white text-xs flex justify-center text-center">
-              Carregando...
-            </p>
-          ) : (
           <div className="flex flex-wrap gap-6 justify-start">
             {repos.map((repo) => (
-              <RepositoryCard key={repo.id} data={repo} />
+              <RepositoryCard key={repo.id} {...repo} />
             ))}
           </div>
-          )}
         </div>
       </div>
     </>

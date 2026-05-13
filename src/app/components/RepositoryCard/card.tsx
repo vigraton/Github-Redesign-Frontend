@@ -5,13 +5,15 @@ import { IoMdArrowDropdown } from "react-icons/io";
 import { Globe, GlobeLock } from "lucide-react";
 import { useState } from "react";
 import { LANGUAGE_COLORS } from "./types";
-import { RepoCardProps } from "./types";
+import { Repository } from "./types";
 
-export default function RepositoryCard({ data }: RepoCardProps) {
-  const languageColor = LANGUAGE_COLORS[data.language] || "#9198A1";
+export default function RepositoryCard({ language, name, updateAt }: Repository) {
+  const languageColor = LANGUAGE_COLORS[language] || "#9198A1";
   const [starred, setStarred] = useState(false);
-  const isPrivate= useState(false);
+  const isPrivate = useState(false);
 
+  // FIX ME: A estrela não deve ser clicável, ela indica apenas quantas pessoas salvaram 
+  // o repositório como favorito. 
   const handleStarClick = () => {
     setStarred(!starred);
   };
@@ -20,7 +22,7 @@ export default function RepositoryCard({ data }: RepoCardProps) {
     <div className="flex flex-col translate-y-44 border-2 border-[#3d444d] bg-[#212830] rounded-2xl h-45 w-75">
       <div className="flex flex-row items-top mt-4 justify-between">
         <h2 className="h-fit p-2 text-wrap line-clamp-2 text-[#418BE6] font-semibold text-[18px] ml-4">
-          {data.name}
+          {name}
         </h2>
 
         {!isPrivate ? (
@@ -34,8 +36,8 @@ export default function RepositoryCard({ data }: RepoCardProps) {
         <span
           className="flex h-3 w-3 rounded-full flex-shrink-0"
           style={{ backgroundColor: languageColor }}></span>
-        <p className="ml-1.5">{data.language}</p>
-        <p className="ml-auto text-nowrap">{data.updatedAt}</p>
+        <p className="ml-1.5">{language}</p>
+        <p className="ml-auto text-nowrap">{updateAt}</p>
       </div>
 
       <button
