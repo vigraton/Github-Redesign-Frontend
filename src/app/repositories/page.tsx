@@ -24,10 +24,10 @@ export default function RepositoriesPage() {
   }, []);
 
   return (
-    <>
+    <main className="pt-40">
       <Header />
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 mt-8">
+      <div className="flex flex-col-1 lg:grid-cols-3 items-start gap-x-10">
         <div className="lg:col-span-1">
           <Profile {...profile} />
         </div>
@@ -40,6 +40,6 @@ export default function RepositoriesPage() {
           </div>
         </div>
       </div>
-    </>
+    </main>
   );
 }

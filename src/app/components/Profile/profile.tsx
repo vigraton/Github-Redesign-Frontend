@@ -38,11 +38,10 @@ export default function Profile({
   }, [])
 
   return (
-    <div className="flex flex-col gap-6 ml-30 mt-40 mb-60">
+    <div className="flex flex-col gap-6 ml-30">
       <div className="w-[250px] h-[250px] flex-shrink-0">
         <Image
           className="rounded-full object-cover"
-          //src="/profile.jpg"
           src={`/${avatar_url}`}
           alt="profile picture"
           width={250}
@@ -78,7 +77,7 @@ export default function Profile({
           in/vivian-graton-a3b451253
         </a>
 
-        <div className="h-0.5 w-80 mt-8 bg-[#353C44]" />
+        <div className="h-0.5 w-65 mt-8 bg-[#353C44]" />
         <h4 className="font-semibold pt-6">Organizations</h4>
       </div>
     </div>
