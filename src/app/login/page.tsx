@@ -33,7 +33,7 @@ export default function LoginPage() {
         style={{ backgroundImage: "url('/Cover.svg')" }}
       >
         <form
-          className="flex flex-col gap-4 justify-self-center mt-90"
+          className="flex flex-col gap-4 justify-center items-center mt-110"
           //onSubmit={handleSubmit(onSubmit)}
         >
           <div className="flex flex-col gap-2">
