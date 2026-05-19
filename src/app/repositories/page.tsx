@@ -14,8 +14,8 @@ export default function RepositoriesPage() {
     login: "",
     avatar_url: "",
     company: "",
-    followers: undefined,
-    following: undefined,
+    followers: null,
+    following: null,
     location: "",
   };
 
