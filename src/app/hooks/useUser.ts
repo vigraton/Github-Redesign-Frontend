@@ -11,5 +11,15 @@ export function useUser() {
     }
   }
 
-  return { getUser };
+  async function getUsername(username: string){
+    try {
+      const response = profileApi.getUsername(username)
+      return response
+    } catch (error) {
+      console.error("GET USERNAME ERROR: ", error)
+      throw error
+    }
+  }
+
+  return { getUser, getUsername };
 }
