@@ -1,7 +1,6 @@
 import Image from "next/image";
 import { FiEdit2 } from "react-icons/fi";
 import { ProfileProps } from "./types";
-// import { profileApi } from "../../services/profile.api";
 import { useUser } from "@/app/hooks/useUser";
 import { useEffect } from "react";
 
@@ -14,30 +13,10 @@ export default function Profile({
   location,
   avatar_url,
 }: ProfileProps) {
-  const { getUser } = useUser();
-
-  // const getAvatar = async () => {
-  //   try {
-  //     return await profileApi.getAvatar()
-  //   } catch (error) {
-  //     console.error("Avatar error: ", error)
-  //     throw error
-  //   }
-  // }
-
-  // const getProfile = async () => {
-  //   try {
-  //     return await profileApi.getProfile()
-  //   } catch (error) {
-  //     console.error("GET ERROR: ", error)
-  //     throw error
-  //   }
-  // }
+  const { getUsername } = useUser();
 
   useEffect(() => {
-    // getAvatar()
-    // getProfile()
-    getUser()
+    getUsername(login)
   }, []);
 
   return (
@@ -45,8 +24,7 @@ export default function Profile({
       <div className="w-[250px] h-[250px] flex-shrink-0">
         <Image
           className="rounded-full object-cover"
-          // src={`/${avatar_url}`}
-          src="https://avatars.githubusercontent.com/u/117688900?v=4"
+          src={`/${avatar_url}`}
           alt="profile picture"
           width={250}
           height={250}

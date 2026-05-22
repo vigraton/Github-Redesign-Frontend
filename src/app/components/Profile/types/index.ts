@@ -6,8 +6,5 @@ export interface ProfileProps {
   following: number | null;
   location?: string | null;
   company?: string | null;
-  bio?: string | null;
-  twitter_username?: string;
   email?: string | null;
-  blog?: string | null;
 }
