@@ -1,9 +1,9 @@
 "use client";
 
-import Header from "../components/Header/header";
-import Profile from "../components/Profile/profile";
-import type { ProfileProps } from "../components/Profile/types";
-import RepositoryCard from "../components/RepositoryCard/card";
+import Header from "../my-components/Header/header";
+import Profile from "../my-components/Profile/profile";
+import type { ProfileProps } from "../my-components/Profile/types";
+import RepositoryCard from "../my-components/RepositoryCard/card";
 import { useEffect } from "react";
 import { useRepos } from "../hooks/useRepos";
 
@@ -24,7 +24,7 @@ export default function RepositoriesPage() {
   }, []);
 
   return (
-    <main className="pt-40">
+    <main className="pt-40 bg-[#212830]">
       <Header />
 
       <div className="flex flex-col-1 lg:grid-cols-3 items-start gap-x-10">

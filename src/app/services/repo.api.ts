@@ -1,5 +1,5 @@
 import axios from "axios";
-import type { Repository } from "../components/RepositoryCard/types";
+import type { Repository } from "../my-components/RepositoryCard/types";
 
 const repoUrl = axios.create({
   baseURL: "https://api.github.com/users/vigraton/repos",
