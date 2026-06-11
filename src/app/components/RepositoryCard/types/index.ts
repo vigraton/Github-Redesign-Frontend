@@ -16,7 +16,8 @@ export interface Repository {
   id: number;
   name: string;
   language: string;
-  updateAt: string;
+  updated_at: string;
   isRepoPrivate?: boolean;
   description?: string;
+  stargazers_count: number
 }

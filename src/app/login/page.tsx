@@ -5,9 +5,8 @@ import { useForm } from "react-hook-form";
 import { userSchema, type UserSchemaType } from "./schema/user";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
-import LightRaysBackground from "@/app/my-components/Background/background";
+import LightRaysBackground from "@/app/components/Background/background";
 import Image from "next/image";
-// import githubsymbol from "../../../public/github-symbol.svg";
 
 export default function LoginPage() {
   const {
@@ -59,7 +58,6 @@ export default function LoginPage() {
           />
         </div>
         <div className="gap-4">
-
           <form
             className="w-full flex flex-col gap-4 bg-[#161b22]/80 backdrop-blur-sm border border-border rounded-xl p-6 text-white"
             onSubmit={handleSubmit(onSubmit)}>

@@ -1,9 +1,9 @@
 "use client";
 
-import Header from "../my-components/Header/header";
-import Profile from "../my-components/Profile/profile";
-import type { ProfileProps } from "../my-components/Profile/types";
-import RepositoryCard from "../my-components/RepositoryCard/card";
+import Header from "../components/Header/header";
+import Profile from "../components/Profile/profile";
+import type { ProfileProps } from "../components/Profile/types";
+import RepositoryCard from "../components/RepositoryCard/card";
 import { useEffect } from "react";
 import { useRepos } from "../hooks/useRepos";
 

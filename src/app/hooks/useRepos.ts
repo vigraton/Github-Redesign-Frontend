@@ -1,5 +1,5 @@
 import { repoApi } from "../services/repo.api";
-import type { Repository } from "../my-components/RepositoryCard/types";
+import type { Repository } from "../components/RepositoryCard/types";
 import { useState } from "react";
 
 export function useRepos() {

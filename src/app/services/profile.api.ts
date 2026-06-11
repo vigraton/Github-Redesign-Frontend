@@ -1,5 +1,5 @@
 import axios from "axios";
-import { ProfileProps } from "../my-components/Profile/types";
+import { ProfileProps } from "../components/Profile/types";
 
 const userUrl = axios.create({
   baseURL: "https://api.github.com/users/",
