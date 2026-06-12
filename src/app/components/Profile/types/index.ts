@@ -1,8 +1,10 @@
 export interface ProfileProps {
   name: string;
-  username: string;
-  followers: number;
-  following: number;
-  location: string;
-  company: string;
+  login: string;
+  avatar_url?: string;
+  followers: number | null;
+  following: number | null;
+  location?: string | null;
+  company?: string | null;
+  email?: string | null;
 }

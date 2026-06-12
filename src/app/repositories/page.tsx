@@ -2,69 +2,44 @@
 
 import Header from "../components/Header/header";
 import Profile from "../components/Profile/profile";
+import type { ProfileProps } from "../components/Profile/types";
 import RepositoryCard from "../components/RepositoryCard/card";
-import { useEffect, useState } from "react";
-import { api } from "../services/repo.api";
-
-type Repo = {
-  id: number;
-  name: string;
-  language: string;
-  updateAt: string;
-  private: boolean;
-};
+import { useEffect } from "react";
+import { useRepos } from "../hooks/useRepos";
 
 export default function RepositoriesPage() {
-  const [repos, setRepos] = useState<Repo[]>([]);
-  const [isLoading, setLoading] = useState(false);
-
-  const profile = {
-    name: "Vivian Graton",
-    username: "vigraton",
-    followers: 11,
-    following: 16,
-    location: "SP, Brasil",
-    company: "Valiant Group Brasil",
+  const { getRepos, repos } = useRepos();
+  const profile: ProfileProps = {
+    name: "",
+    login: "",
+    avatar_url: "",
+    company: "",
+    followers: null,
+    following: null,
+    location: "",
   };
-
-  async function getRepos() {
-    setLoading(true);
-    try {
-      const response = await api.get();
-      setRepos(response);
-      setLoading(false);
-    } catch (error) {
-      console.error("Error: ", error);
-    }
-  }
 
   useEffect(() => {
     getRepos();
   }, []);
 
   return (
-    <>
+    <main className="pt-40 bg-[#212830]">
       <Header />
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 mt-8">
+      <div className="flex flex-col-1 lg:grid-cols-3 items-start gap-x-10">
         <div className="lg:col-span-1">
           <Profile {...profile} />
         </div>
 
         <div className="lg:col-span-2">
-          {isLoading ? (
-            <p className="text-white text-xs flex justify-center text-center">
-              Carregando...
-            </p>
-          ) : (
-            <div className="flex flex-wrap gap-6 justify-start">
-              {repos.map((repo) => (
-                <RepositoryCard key={repo.id} data={repo} />
-              ))}
-            </div>
-          )}
+          <div className="flex flex-wrap gap-6 justify-start">
+            {repos.map((repo) => (
+              <RepositoryCard key={repo.id} {...repo} />
+            ))}
+          </div>
         </div>
       </div>
-    </>
+    </main>
   );
 }
