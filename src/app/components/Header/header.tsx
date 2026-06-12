@@ -45,7 +45,7 @@ export default function Header() {
   ];
 
   return (
-    <div className="bg-[#151b23] w-full h-28 fixed top-0 z-10">
+    <div className="bg-[#151b23] w-full h-28 fixed top-0 z-10 flex flex-col justify-between">
       <div className="flex flex-row justify-between items-center pl-6 pr-6 pt-4">
         <div className="flex flex-row gap-2 items-center">
           <Image src="/github.png" alt="github icon" width={30} height={30} />
@@ -60,47 +60,17 @@ export default function Header() {
         />
       </div>
 
-      <nav className="flex flex-row gap-2 pt-6 pb-2 pl-2">
+      <nav className="flex flex-row gap-4 ml-6">
         {nav_items.map((item) => (
-          <div key={item.id} className="flex flex-row items-center gap-4 text-muted">
-            <img src={item.icon}>{item.icon}</img>
-            <Link href={item.ref} className={`${item.isActive ? "border border-b-[#8A38F5]" : ""} cursor pointer`}>
+          <div
+            key={item.id}
+            className={`${item.isActive ? "border-b-3 border-[#8A38F5]" : ""} rounded-tl-md rounded-tr-md flex flex-row items-center gap-2 p-2 hover:bg-[#8A38F5]/20`}>
+            <img src={item.icon} />
+            <Link href={item.ref} className="text-muted font-sans ">
               {item.nav}
-            </Link>
+            </Link>            
           </div>
         ))}
-
-        {/* <Link
-          href="#"
-          className={`text-white text-[14px] rounded-[6px] px-4 py-1 hover:bg-[#212730] [&.active]:border-b-2 [&.active]:border-orange-400 [&.active]:bottom-0 ${
-            pathname === "#" ? "active" : ""
-          }`}>
-          Overview
-        </Link>
-        <Link
-          href="#"
-          className={`text-white text-[14px] rounded-[6px] px-4 py-1 hover:bg-[#212730]`}
-          data-active="true">
-          Repositories
-        </Link>
-        <Link
-          href="/repositories"
-          className={`text-white text-[14px] rounded-[6px] px-4 py-1 hover:bg-[#212730] ${
-            pathname === "/projects" ? "active" : ""
-          }`}>
-          Projects
-        </Link>
-        <Link
-          href="#"
-          className={`text-white text-[14px] rounded-[6px] px-4 py-1 hover:bg-[#212730]`}>
-          Packages
-        </Link>
-        <Link
-          href="#"
-          className={`text-white text-[14px] rounded-[6px] px-4 py-1 hover:bg-[#212730]`}>
-          Stars
-        </Link> */}
-
       </nav>
     </div>
   );
