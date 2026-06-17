@@ -17,7 +17,7 @@ export interface Repository {
   name: string;
   language: string;
   updated_at: string;
-  isRepoPrivate?: boolean;
   description?: string;
   stargazers_count: number
+  visibility: "public" | "private";
 }
