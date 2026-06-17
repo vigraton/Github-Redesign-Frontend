@@ -1,15 +1,15 @@
 import { profileApi } from "../services/profile.api";
 
 export function useUser() {
-  async function getUsername(username: string) {
+  async function getUser() {
     try {
-      const response = profileApi.getUsername(username);
+      const response = await profileApi.getProfile();
       return response;
     } catch (error) {
-      console.error("GET USERNAME ERROR: ", error);
+      console.error("GET PROFILE ERROR: ", error);
       throw error;
     }
   }
 
-  return { getUsername };
+  return { getUser };
 }

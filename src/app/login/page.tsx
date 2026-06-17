@@ -1,7 +1,8 @@
 "use client";
 
 import { useForm } from "react-hook-form";
-// import { useUser } from "../hooks/useUser";
+import { useUser } from "../hooks/useUser";
+import { useState } from "react";
 import { userSchema, type UserSchemaType } from "./schema/user";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
@@ -9,6 +10,7 @@ import LightRaysBackground from "@/app/components/Background/background";
 import Image from "next/image";
 
 export default function LoginPage() {
+  const [user, setUser] = useState("")
   const {
     register,
     handleSubmit,
@@ -29,19 +31,20 @@ export default function LoginPage() {
     }
   };
 
-  // const { getUsername } = useUser();
+  const { getUser } = useUser();
 
-  // const handleUsername = () => {
-  //   async (username: string) => {
-  //     try {
-  //       const response = await getUsername(username);
-  //       console.log("RESPONSE: ", response);
-  //       return response;
-  //     } catch (error) {
-  //       console.error(error);
-  //     }
-  //   };
-  // };
+  const handleUsername = () => {
+    async (username: string) => {
+      try {
+        const response = await getUser();
+        // setUser(response)
+        console.log("RESPONSE: ", response);
+        return response;
+      } catch (error) {
+        console.error(error);
+      }
+    };
+  };
 
   return (
     <div className="fixed inset-0 -z-10 bg-cover w-screen h-screen overflow-hidden text-white">
@@ -60,7 +63,7 @@ export default function LoginPage() {
         <div className="gap-4">
           <form
             className="w-full flex flex-col gap-4 bg-[#161b22]/80 backdrop-blur-sm border border-border rounded-xl p-6 text-white"
-            onSubmit={handleSubmit(onSubmit)}>
+            onSubmit={handleSubmit(handleUsername)}>
             <h1 className="text-muted text-xl font-semibold text-center">
               Sign in to GitHub
             </h1>
@@ -70,7 +73,7 @@ export default function LoginPage() {
               name="username"
               className="border border-gray-30 rounded-md h-10 w-60 text-sm px-2"
               placeholder="Username"
-              // value={}
+              // value={(e: string) => setUser(e.target.value)}
             />
             {errors.username && (
               <span className="text-red-500 text-xs">

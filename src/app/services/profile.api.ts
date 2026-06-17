@@ -2,21 +2,23 @@ import axios from "axios";
 import { ProfileProps } from "../components/Profile/types";
 
 const userUrl = axios.create({
-  baseURL: "https://api.github.com/users/",
+  baseURL: "https://api.github.com/users/vigraton",
 });
 
-async function getUsername(username: string) {
+async function getProfile() {
   try {
-    const response = (
-      await userUrl.get<ProfileProps>(
-        `${username}`,
-        //   {
-        //   headers: {
-        //     Authorization: `Bearer ${process.env.GITHUB_TOKEN}`,
-        //   },
-        // }
-      )
-    ).data;
+    const response = (await userUrl.get<ProfileProps>("")).data
+    
+    // (
+    //   await userUrl.get<ProfileProps>(
+    //     `${username}`,
+    //       {
+    //       headers: {
+    //         Authorization: `Bearer ${process.env.GITHUB_TOKEN}`,
+    //       },
+    //     }
+    //   )
+    // ).data;
 
     console.log("GET USERNAME RESPONSE: ", response);
     return response;
@@ -25,4 +27,4 @@ async function getUsername(username: string) {
   }
 }
 
-export const profileApi = { getUsername };
+export const profileApi = { getProfile };

@@ -2,6 +2,9 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { useState, useEffect } from "react";
+import { useUser } from "@/app/hooks/useUser";
+import { ProfileProps } from "@/app/components/Profile/types";
 import { usePathname } from "next/navigation";
 
 export default function Header() {
@@ -43,17 +46,32 @@ export default function Header() {
       isActive: pathname === "/stars",
     },
   ];
+  const { getUser } = useUser();
+  const [profile, setProfile] = useState<ProfileProps>();
+
+  useEffect(() => {
+    const fetchProfile = async () => {
+      try {
+        const profileData = await getUser();
+        setProfile(profileData);
+      } catch (error) {
+        console.error("PROFILE ERROR: ", error);
+      }
+    };
+
+    fetchProfile();
+  }, []);
 
   return (
     <div className="bg-[#151b23] w-full h-28 fixed top-0 z-10 flex flex-col justify-between">
       <div className="flex flex-row justify-between items-center pl-6 pr-6 pt-4">
         <div className="flex flex-row gap-2 items-center">
           <Image src="/github.png" alt="github icon" width={30} height={30} />
-          <p className="text-white  text-[14px]">vigraton</p>
+          <p className="text-white  text-[14px]">{profile?.login}</p>
         </div>
         <Image
           className="flex rounded-full"
-          src="/profile.jpg"
+          src={profile?.avatar_url!}
           alt="profile"
           width={35}
           height={35}
@@ -68,7 +86,7 @@ export default function Header() {
             <img src={item.icon} />
             <Link href={item.ref} className="text-muted font-sans ">
               {item.nav}
-            </Link>            
+            </Link>
           </div>
         ))}
       </nav>
