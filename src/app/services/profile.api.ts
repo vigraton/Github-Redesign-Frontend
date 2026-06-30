@@ -7,8 +7,8 @@ const userUrl = axios.create({
 
 async function getProfile() {
   try {
-    const response = (await userUrl.get<ProfileProps>("")).data
-    
+    const response = (await userUrl.get<ProfileProps>("")).data;
+
     // (
     //   await userUrl.get<ProfileProps>(
     //     `${username}`,
@@ -27,4 +27,13 @@ async function getProfile() {
   }
 }
 
-export const profileApi = { getProfile };
+async function getUsername(username: string) {
+  try {
+    const response = await fetch(`https://api.github.com/users/${username}`);
+    return response
+  } catch (error) {
+    throw error;
+  }
+}
+
+export const profileApi = { getUsername };

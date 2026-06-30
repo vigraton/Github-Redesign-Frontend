@@ -5,17 +5,22 @@ import { useUser } from "@/app/hooks/useUser";
 import { useEffect, useState } from "react";
 
 export default function Profile() {
-  const { getUser } = useUser();
+  const { fetchUsername } = useUser();
   const [profile, setProfile] = useState<ProfileProps>();
 
   useEffect(() => {
-    const fetchProfile = async () => {
-      try {
-        const profileData = await getUser();
-        setProfile(profileData);
-      } catch (error) {
-        console.error("PROFILE ERROR: ", error);
-      }
+    const fetchProfile = () => {
+      async (username: string) => {
+        try {
+          const response = await fetchUsername(username);
+          setProfile(profile);
+          console.log("RESPONSE: ", response);
+          return response;
+
+        } catch (error) {
+          console.error("FETCH ERROR: ", error);
+        }
+      };
     };
 
     fetchProfile();

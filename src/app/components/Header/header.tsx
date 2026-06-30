@@ -46,21 +46,21 @@ export default function Header() {
       isActive: pathname === "/stars",
     },
   ];
-  const { getUser } = useUser();
+  // const { getUser } = useUser();
   const [profile, setProfile] = useState<ProfileProps>();
 
-  useEffect(() => {
-    const fetchProfile = async () => {
-      try {
-        const profileData = await getUser();
-        setProfile(profileData);
-      } catch (error) {
-        console.error("PROFILE ERROR: ", error);
-      }
-    };
+  // useEffect(() => {
+  //   const fetchProfile = async () => {
+  //     try {
+  //       const profileData = await getUser();
+  //       setProfile(profileData);
+  //     } catch (error) {
+  //       console.error("PROFILE ERROR: ", error);
+  //     }
+  //   };
 
-    fetchProfile();
-  }, []);
+  //   fetchProfile();
+  // }, []);
 
   return (
     <div className="bg-[#151b23] w-full h-28 fixed top-0 z-10 flex flex-col justify-between">

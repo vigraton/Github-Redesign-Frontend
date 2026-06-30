@@ -23,25 +23,26 @@ export default function LoginPage() {
     },
   });
 
-  const onSubmit = (data: UserSchemaType) => {
-    try {
-      console.log(data);
-    } catch (error) {
-      console.error(error);
-    }
-  };
+  // const onSubmit = (data: UserSchemaType) => {
+  //   try {
+  //     console.log(data);
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // };
 
-  const { getUser } = useUser();
+  const { fetchUsername } = useUser();
 
   const handleUsername = () => {
     async (username: string) => {
       try {
-        const response = await getUser();
-        // setUser(response)
+        const response = await fetchUsername(username);
+        setUser(username)
         console.log("RESPONSE: ", response);
         return response;
+
       } catch (error) {
-        console.error(error);
+        console.error("FETCH ERROR: ", error);
       }
     };
   };
@@ -73,7 +74,8 @@ export default function LoginPage() {
               name="username"
               className="border border-gray-30 rounded-md h-10 w-60 text-sm px-2"
               placeholder="Username"
-              // value={(e: string) => setUser(e.target.value)}
+              value={user}
+              onChange={(e) => setUser(e.target.value)}
             />
             {errors.username && (
               <span className="text-red-500 text-xs">
