@@ -9,25 +9,20 @@ export default function Profile() {
   const [profile, setProfile] = useState<ProfileProps>();
 
   useEffect(() => {
-    const fetchProfile = () => {
-      async (username: string) => {
-        try {
-          const response = await fetchUsername(username);
-          setProfile(profile);
-          console.log("RESPONSE: ", response);
-          return response;
-
-        } catch (error) {
-          console.error("FETCH ERROR: ", error);
-        }
-      };
+    async (username: string) => {
+      try {
+        const response = await fetchUsername(username);
+        setProfile(response);
+        console.log("RESPONSE: ", response);
+        return response;
+      } catch (error) {
+        console.error("FETCH ERROR: ", error);
+      }
     };
-
-    fetchProfile();
-  }, []);
+  }, [fetchUsername]);
 
   return (
-    <div className="flex flex-col gap-6 ml-30">
+    <div className="flex flex-col gap-6 ml-30" key={profile?.id}>
       {profile?.avatar_url && (
         <div className="w-[250px] h-[250px] flex-shrink-0">
           <Image

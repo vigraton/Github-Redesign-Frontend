@@ -3,14 +3,15 @@
 import { useForm } from "react-hook-form";
 import { useUser } from "../hooks/useUser";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { userSchema, type UserSchemaType } from "./schema/user";
 import { zodResolver } from "@hookform/resolvers/zod";
-import Link from "next/link";
 import LightRaysBackground from "@/app/components/Background/background";
 import Image from "next/image";
 
 export default function LoginPage() {
-  const [user, setUser] = useState("")
+  const router = useRouter()
+  const [user, setUser] = useState("");
   const {
     register,
     handleSubmit,
@@ -23,28 +24,20 @@ export default function LoginPage() {
     },
   });
 
-  // const onSubmit = (data: UserSchemaType) => {
-  //   try {
-  //     console.log(data);
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // };
-
   const { fetchUsername } = useUser();
 
-  const handleUsername = () => {
-    async (username: string) => {
-      try {
-        const response = await fetchUsername(username);
-        setUser(username)
-        console.log("RESPONSE: ", response);
-        return response;
+  const handleUsername = async (data: UserSchemaType) => {
+    try {
+      const response = await fetchUsername(data.username);
+      setUser(data.username);
+      router.push("/repositories")
 
-      } catch (error) {
-        console.error("FETCH ERROR: ", error);
-      }
-    };
+      console.log("RESPONSE: ", response);
+
+      return response;
+    } catch (error) {
+      console.error("FETCH ERROR: ", error);
+    }
   };
 
   return (
@@ -95,13 +88,13 @@ export default function LoginPage() {
               </span>
             )}
 
-            <Link href={"/repositories"}>
-              <button
-                type="submit"
-                className="bg-[#02003A] cursor-pointer text-sm h-10 w-60 rounded-md shadow-[#8A38F5] hover:shadow-md transition-shadow duration-300">
-                Submit
-              </button>
-            </Link>
+            {/* <Link href={"/repositories"}> */}
+            <button
+              type="submit"
+              className="bg-[#02003A] cursor-pointer text-sm h-10 w-60 rounded-md shadow-[#8A38F5] hover:shadow-md transition-shadow duration-300">
+              Submit
+            </button>
+            {/* </Link> */}
           </form>
         </div>
       </div>
