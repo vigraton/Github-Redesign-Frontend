@@ -31,7 +31,6 @@ export default function LoginPage() {
       setUser(data.username);
       router.push("/repositories");
 
-      console.log("RESPONSE: ", data);
       return data;
     } catch (error) {
       console.error("FETCH ERROR: ", error);

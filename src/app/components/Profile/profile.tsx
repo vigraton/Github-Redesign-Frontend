@@ -1,6 +1,5 @@
 "use client";
 
-// import Image from "next/image";
 import { FiEdit2 } from "react-icons/fi";
 import { useUserContext } from "@/app/context/UserContext";
 
@@ -9,9 +8,9 @@ export default function Profile() {
 
   return (
     <div className="flex flex-col gap-6 ml-30" key={profile?.id}>
-      {/* {profile?.avatar_url && (
+      {profile?.avatar_url && (
         <div className="w-[250px] h-[250px] flex-shrink-0">
-          <Image
+          <img
             className="rounded-full object-cover"
             src={profile?.avatar_url}
             alt="profile picture"
@@ -19,7 +18,7 @@ export default function Profile() {
             height={250}
           />
         </div>
-      )} */}
+      )}
 
       <div className="flex flex-col text-white">
         <div className="flex items-center gap-4">
