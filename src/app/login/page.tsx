@@ -1,16 +1,16 @@
 "use client";
 
 import { useForm } from "react-hook-form";
-import { useUser } from "../hooks/useUser";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { userSchema, type UserSchemaType } from "./schema/user";
 import { zodResolver } from "@hookform/resolvers/zod";
 import LightRaysBackground from "@/app/components/Background/background";
 import Image from "next/image";
+import { useUserContext } from "../context/UserContext";
 
 export default function LoginPage() {
-  const router = useRouter()
+  const router = useRouter();
   const [user, setUser] = useState("");
   const {
     register,
@@ -20,21 +20,19 @@ export default function LoginPage() {
     resolver: zodResolver(userSchema),
     defaultValues: {
       username: "",
-      password: "",
     },
   });
 
-  const { fetchUsername } = useUser();
+  const { fetchUsername, isLoading } = useUserContext();
 
   const handleUsername = async (data: UserSchemaType) => {
     try {
-      const response = await fetchUsername(data.username);
+      await fetchUsername(data.username);
       setUser(data.username);
-      router.push("/repositories")
+      router.push("/repositories");
 
-      console.log("RESPONSE: ", response);
-
-      return response;
+      console.log("RESPONSE: ", data);
+      return data;
     } catch (error) {
       console.error("FETCH ERROR: ", error);
     }
@@ -76,25 +74,11 @@ export default function LoginPage() {
               </span>
             )}
 
-            <input
-              {...register("password")}
-              type="password"
-              className="border border-gray-300 rounded-md h-10 w-60 text-sm px-2"
-              placeholder="Password"
-            />
-            {errors.password && (
-              <span className="text-red-500 text-xs">
-                {errors.password.message}
-              </span>
-            )}
-
-            {/* <Link href={"/repositories"}> */}
             <button
               type="submit"
               className="bg-[#02003A] cursor-pointer text-sm h-10 w-60 rounded-md shadow-[#8A38F5] hover:shadow-md transition-shadow duration-300">
-              Submit
+              {isLoading ? "Submitting..." : "Submit"}
             </button>
-            {/* </Link> */}
           </form>
         </div>
       </div>

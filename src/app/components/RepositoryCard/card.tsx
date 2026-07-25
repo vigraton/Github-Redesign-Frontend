@@ -22,7 +22,9 @@ export default function RepositoryCard({
     const [year, month, day] = dateStr.split("T")[0].split("-");
     const formatted = `${day}/${month}/${year}`;
 
-    return formatted
+    if (date) {
+      return formatted;
+    }
   }
 
   return (

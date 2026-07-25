@@ -1,29 +1,15 @@
-import Image from "next/image";
+"use client";
+
+// import Image from "next/image";
 import { FiEdit2 } from "react-icons/fi";
-import { ProfileProps } from "./types";
-import { useUser } from "@/app/hooks/useUser";
-import { useEffect, useState } from "react";
+import { useUserContext } from "@/app/context/UserContext";
 
 export default function Profile() {
-  const { fetchUsername } = useUser();
-  const [profile, setProfile] = useState<ProfileProps>();
-
-  useEffect(() => {
-    async (username: string) => {
-      try {
-        const response = await fetchUsername(username);
-        setProfile(response);
-        console.log("RESPONSE: ", response);
-        return response;
-      } catch (error) {
-        console.error("FETCH ERROR: ", error);
-      }
-    };
-  }, [fetchUsername]);
+  const { profile } = useUserContext();
 
   return (
     <div className="flex flex-col gap-6 ml-30" key={profile?.id}>
-      {profile?.avatar_url && (
+      {/* {profile?.avatar_url && (
         <div className="w-[250px] h-[250px] flex-shrink-0">
           <Image
             className="rounded-full object-cover"
@@ -33,7 +19,7 @@ export default function Profile() {
             height={250}
           />
         </div>
-      )}
+      )} */}
 
       <div className="flex flex-col text-white">
         <div className="flex items-center gap-4">
@@ -53,16 +39,6 @@ export default function Profile() {
         <div className="flex flex-col gap-1">
           <p className="pt-4 text-[14px]">{profile?.company}</p>
           <p className="text-[14px]">{profile?.location}</p>
-          <a
-            className="text-[14px] cursor-pointer hover:underline"
-            href="https://www.figma.com/@viviangraton">
-            https://www.figma.com/@viviangraton
-          </a>
-          <a
-            className="text-[14px] cursor-pointer hover:underline"
-            href="https://www.linkedin.com/in/vivian-graton-a3b451253/">
-            in/vivian-graton-a3b451253
-          </a>
         </div>
 
         <div className="h-0.5 w-65 mt-8 bg-[#353C44]" />
