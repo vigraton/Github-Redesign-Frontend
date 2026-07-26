@@ -11,7 +11,7 @@ export default function RepositoriesPage() {
 
   useEffect(() => {
     getRepos();
-  }, []);
+  }, [getRepos]);
 
   return (
     <main className="pt-40 bg-[#212830] overflow-x-hidden flex flex-col justify-between gap-20">

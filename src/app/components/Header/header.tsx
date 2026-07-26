@@ -56,11 +56,11 @@ export default function Header() {
             width={30}
             height={30}
           />
-          <p className="text-white font-medium text-[14px]">{profile?.login!}</p>
+          <p className="text-white font-medium text-[14px]">{profile?.login}</p>
         </div>
         <img
           className="flex rounded-full"
-          src={profile?.avatar_url!}
+          src={profile?.avatar_url}
           alt="profile"
           width={35}
           height={35}
