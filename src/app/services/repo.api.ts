@@ -14,4 +14,13 @@ async function getRepos() {
   }
 }
 
-export const repoApi = { getRepos };
+async function fetchUserRepos(username: string){
+  try {
+    const response = (await fetch(`https://api.github.com/users/${username}/repos`)).json()
+    return response
+  } catch (error) {
+    throw error
+  }
+}
+
+export const repoApi = { getRepos, fetchUserRepos };

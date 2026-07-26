@@ -1,39 +1,28 @@
-import Image from "next/image";
+"use client";
+
 import { FiEdit2 } from "react-icons/fi";
-import { ProfileProps } from "./types";
-import { useUser } from "@/app/hooks/useUser";
-import { useEffect } from "react";
+import { useUserContext } from "@/app/context/UserContext";
 
-export default function Profile({
-  name,
-  login,
-  followers,
-  following,
-  company,
-  location,
-  avatar_url,
-}: ProfileProps) {
-  const { getUsername } = useUser();
-
-  useEffect(() => {
-    getUsername(login)
-  }, []);
+export default function Profile() {
+  const { profile } = useUserContext();
 
   return (
-    <div className="flex flex-col gap-6 ml-30">
-      <div className="w-[250px] h-[250px] flex-shrink-0">
-        <Image
-          className="rounded-full object-cover"
-          src={`/${avatar_url}`}
-          alt="profile picture"
-          width={250}
-          height={250}
-        />
-      </div>
+    <div className="flex flex-col gap-6 ml-30" key={profile?.id}>
+      {profile?.avatar_url && (
+        <div className="w-[250px] h-[250px] flex-shrink-0">
+          <img
+            className="rounded-full object-cover"
+            src={profile?.avatar_url}
+            alt="profile picture"
+            width={250}
+            height={250}
+          />
+        </div>
+      )}
 
       <div className="flex flex-col text-white">
         <div className="flex items-center gap-4">
-          <h3 className="font-semibold text-[24px] pt-4">{name}</h3>
+          <h3 className="font-semibold text-[24px] pt-4">{profile?.name}</h3>
           <div className="pt-4">
             <button className="cursor-pointer items-center justify-center border border-[#3D444D] rounded-[6px] bg-[#2A313C] w-8 h-8">
               <FiEdit2 className="flex items-center justify-self-center" />
@@ -41,23 +30,15 @@ export default function Profile({
           </div>
         </div>
 
-        <p className="text-[#889099] text-[18px]">{login}</p>
+        <p className="text-[#889099] text-[18px]">{profile?.login}</p>
         <p className="pt-4">
-          {followers} followers · {following} following
+          {profile?.followers} followers · {profile?.following} following
         </p>
-        <p className="pt-4 text-[14px]">{company}</p>
-        <p className="text-[14px]">{location}</p>
-        <a
-          className="text-[14px] cursor-pointer hover:underline"
-          href="https://www.figma.com/@viviangraton">
-          https://www.figma.com/@viviangraton
-        </a>
-        <br />
-        <a
-          className="text-[14px] cursor-pointer hover:underline"
-          href="https://www.linkedin.com/in/vivian-graton-a3b451253/">
-          in/vivian-graton-a3b451253
-        </a>
+
+        <div className="flex flex-col gap-1">
+          <p className="pt-4 text-[14px]">{profile?.company}</p>
+          <p className="text-[14px]">{profile?.location}</p>
+        </div>
 
         <div className="h-0.5 w-65 mt-8 bg-[#353C44]" />
         <h4 className="font-semibold pt-6">Organizations</h4>

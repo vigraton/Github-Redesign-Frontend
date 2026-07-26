@@ -2,34 +2,23 @@
 
 import Header from "../components/Header/header";
 import Profile from "../components/Profile/profile";
-import type { ProfileProps } from "../components/Profile/types";
 import RepositoryCard from "../components/RepositoryCard/card";
 import { useEffect } from "react";
 import { useRepos } from "../hooks/useRepos";
 
 export default function RepositoriesPage() {
   const { getRepos, repos } = useRepos();
-  const profile: ProfileProps = {
-    name: "",
-    login: "",
-    avatar_url: "",
-    company: "",
-    followers: null,
-    following: null,
-    location: "",
-  };
 
   useEffect(() => {
     getRepos();
-  }, []);
+  }, [getRepos]);
 
   return (
-    <main className="pt-40 bg-[#212830]">
+    <main className="pt-40 bg-[#212830] overflow-x-hidden flex flex-col justify-between gap-20">
       <Header />
-
       <div className="flex flex-col-1 lg:grid-cols-3 items-start gap-x-10">
         <div className="lg:col-span-1">
-          <Profile {...profile} />
+          <Profile />
         </div>
 
         <div className="lg:col-span-2">
@@ -40,6 +29,10 @@ export default function RepositoriesPage() {
           </div>
         </div>
       </div>
+
+      <footer className="w-full h-25 text-white font-semibold flex justify-center items-center bg-gradient-to-b from-[#212830] from-5% to-[#151B23] to-60%">
+        <p>Made with ❤️ by Vivian Graton</p>
+      </footer>
     </main>
   );
 }

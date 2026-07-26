@@ -12,10 +12,20 @@ export default function RepositoryCard({
   updated_at,
   description,
   stargazers_count,
+  visibility,
 }: Repository) {
   const languageColor = LANGUAGE_COLORS[language] || null;
   const [starred, setStarred] = useState(false);
-  const isPrivate = useState(false);
+
+  function formateDate(date: string) {
+    const dateStr = updated_at;
+    const [year, month, day] = dateStr.split("T")[0].split("-");
+    const formatted = `${day}/${month}/${year}`;
+
+    if (date) {
+      return formatted;
+    }
+  }
 
   return (
     <div className="flex flex-col relative border-2 border-[#3d444d] bg-[#212830] rounded-2xl p-4 h-45 w-75">
@@ -25,7 +35,7 @@ export default function RepositoryCard({
             {name}
           </h2>
 
-          {!isPrivate ? (
+          {visibility === "private" ? (
             <GlobeLock className="text-[#3D444D]" />
           ) : (
             <Globe className="text-[#418BE6]" />
@@ -43,7 +53,7 @@ export default function RepositoryCard({
             className="flex h-3 w-3 rounded-full flex-shrink-0"
             style={{ backgroundColor: languageColor! }}></span>
           <p className="ml-1.5">{language}</p>
-          <p className="ml-auto text-nowrap">{updated_at}</p>
+          <p className="ml-auto text-nowrap">{formateDate(updated_at)}</p>
         </div>
       </div>
 
