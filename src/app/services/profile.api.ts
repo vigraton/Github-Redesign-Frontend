@@ -7,4 +7,13 @@ async function getUsername(username: string) {
   }
 }
 
-export const profileApi = { getUsername };
+async function getUserRepos(username: string){
+  try {
+    const response = (await fetch(`https://api.github.com/users/${username}/repos`)).json()
+    return response
+  } catch (error) {
+    throw error
+  }
+}
+
+export const profileApi = { getUsername, getUserRepos };
