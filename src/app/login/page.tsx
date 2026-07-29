@@ -1,7 +1,7 @@
 "use client";
 
 import { useForm } from "react-hook-form";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { userSchema, type UserSchemaType } from "./schema/user";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -28,16 +28,21 @@ export default function LoginPage() {
   const handleUsername = async (data: UserSchemaType) => {
     try {
       await fetchUsername(data.username);
-      await fetchUserRepos(data.username)
-            
+      await fetchUserRepos(data.username);
       setUser(data.username);
-      router.push("/repositories");
 
+      router.push("/repositories");
       return data;
     } catch (error) {
       console.error("FETCH ERROR: ", error);
     }
   };
+
+  useEffect(() => {
+    if (user) {
+      localStorage.setItem("username", user);
+    }
+  }, [user]);
 
   return (
     <div className="fixed inset-0 -z-10 bg-cover w-screen h-screen overflow-hidden text-white">

@@ -30,18 +30,18 @@ export default function RepositoryCard({
 
   return (
     <div
-      className="flex flex-col relative border-2 border-[#3d444d] bg-[#212830] rounded-2xl p-4 h-45 w-75"
+      className="flex flex-col gap-3 relative border-2 border-[#3d444d] bg-[#212830] rounded-2xl p-4 h-45 w-75"
       key={owner.login}>
       <div className="space-y-3">
-        <div className="flex flex-row items-top justify-between items-start">
-          <h2 className="h-fit truncate text-wrap line-clamp-2 text-[#418BE6] font-semibold text-[18px]">
+        <div className="flex flex-row w-full items-top justify-between items-start">
+          <h2 className="h-fit truncate max-w-60 text-nowrap text-[#418BE6] font-semibold text-[18px]">
             {name}
           </h2>
 
           {visibility === "private" ? (
             <GlobeLock className="text-[#3D444D]" />
           ) : (
-            <Globe className="text-[#418BE6]" />
+            <Globe className="text-[#418BE6]" size={20} />
           )}
         </div>
 
@@ -51,12 +51,15 @@ export default function RepositoryCard({
           </p>
         }
 
-        <div className="flex flex-row items-center text-sm text-[#9198A1] justify-between">
-          <span
-            className="flex h-3 w-3 rounded-full flex-shrink-0"
-            style={{ backgroundColor: languageColor! }}></span>
-          <p className="ml-1.5">{language}</p>
-          <p className="ml-auto text-nowrap">{formateDate(updated_at)}</p>
+        <div className="flex flex-row ml-auto items-center text-sm text-[#9198A1] justify-between">
+          <div className="flex flex-row gap-1 items-center">
+            <span
+              className="flex h-3 w-3 rounded-full flex-shrink-0"
+              style={{ backgroundColor: languageColor! }}></span>
+            <p>{language}</p>
+          </div>
+
+          <p>{formateDate(updated_at)}</p>
         </div>
       </div>
 
@@ -64,15 +67,13 @@ export default function RepositoryCard({
         onClick={() => {
           setStarred(!starred);
         }}
-        className={`${starred ? "bg-[#D29922]/20 border-[#D29922] text-[#D29922]" : "bg-[#212830] border-[#3d444d] text-[#9198A1]"} cursor-pointer absolute flex bottom-4 items-center justify-between border-1 rounded-lg h-10 w-[55px]`}>
+        className={`${starred ? "bg-[#D29922]/20 border-[#D29922] text-[#D29922]" : "bg-[#212830] border-[#3d444d] text-[#9198A1]"} cursor-pointer flex flex-row bottom-4 items-center justify-between border-1 rounded-lg h-10 gap-2 max-w-fit p-2`}>
         {starred ? (
-          <FaStar className="text-[#FFCC00] w-4.5 h-4.5 ml-2" />
+          <FaStar className="text-[#FFCC00] w-4.5 h-4.5" />
         ) : (
-          <FaRegStar className="text-[#9198A1] w-4.5 h-4.5 ml-2" />
+          <FaRegStar className="text-[#9198A1] w-4.5 h-4.5" />
         )}
-        <span className="mr-2">
-          {(stargazers_count ?? 0) + (starred ? 1 : 0)}
-        </span>
+        <span>{(stargazers_count ?? 0) + (starred ? 1 : 0)}</span>
 
         {/* Cagaio, acho que finalmente entendi ??. Se stargazers_count vir como null ou undefined da API, 
         então vai ficar como 0. Se estiver marcado então é contado + 1 */}
