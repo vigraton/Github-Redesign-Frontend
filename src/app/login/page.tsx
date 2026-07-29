@@ -23,7 +23,7 @@ export default function LoginPage() {
     },
   });
 
-  const { fetchUsername, fetchUserRepos, isLoading, repos } = useUserContext();
+  const { fetchUsername, fetchUserRepos, isLoading } = useUserContext();
 
   const handleUsername = async (data: UserSchemaType) => {
     try {
