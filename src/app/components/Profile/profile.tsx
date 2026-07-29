@@ -1,6 +1,6 @@
 "use client";
 
-import { FiEdit2 } from "react-icons/fi";
+// import { FiEdit2 } from "react-icons/fi";
 import { useUserContext } from "@/app/context/UserContext";
 
 export default function Profile() {
@@ -23,11 +23,11 @@ export default function Profile() {
       <div className="flex flex-col text-white">
         <div className="flex items-center gap-4">
           <h3 className="font-semibold text-[24px] pt-4">{profile?.name}</h3>
-          <div className="pt-4">
+          {/* <div className="pt-4">
             <button className="cursor-pointer items-center justify-center border border-[#3D444D] rounded-[6px] bg-[#2A313C] w-8 h-8">
               <FiEdit2 className="flex items-center justify-self-center" />
             </button>
-          </div>
+          </div> */}
         </div>
 
         <p className="text-[#889099] text-[18px]">{profile?.login}</p>
@@ -41,7 +41,7 @@ export default function Profile() {
           <p className="text-[14px]">{profile?.location}</p>
         </div>
 
-        <div className="h-0.5 w-65 mt-8 bg-[#353C44]" />
+        <div className="h-0.5 w-full mt-8 bg-[#353C44]" />
         <h4 className="font-semibold pt-6">Organizations</h4>
       </div>
     </div>

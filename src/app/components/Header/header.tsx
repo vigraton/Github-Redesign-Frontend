@@ -71,9 +71,11 @@ export default function Header() {
         {nav_items.map((item) => (
           <div
             key={item.id}
-            className={`${item.isActive ? "border-b-3 border-[#8A38F5]" : ""} rounded-tl-md rounded-tr-md flex flex-row items-center gap-2 p-2 hover:bg-[#8A38F5]/20`}>
-            <img src={item.icon} alt={`${item.icon} icon`} />
-            <Link href={item.ref} className="text-muted font-sans">
+            className={`${item.isActive ? "border-b-3 border-[#8A38F5]" : null} flex flex-row items-center`}>
+            <Link
+              href={item.ref}
+              className={`flex flex-row text-muted font-sans rounded-md p-2 gap-2 items-center justify-center hover:bg-[#8A38F5]/20`}>
+              <img src={item.icon} alt={`${item.icon} icon`} />
               {item.nav}
             </Link>
           </div>
