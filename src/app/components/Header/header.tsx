@@ -72,7 +72,7 @@ export default function Header() {
           <div
             key={item.id}
             className={`${item.isActive ? "border-b-3 border-[#8A38F5]" : ""} rounded-tl-md rounded-tr-md flex flex-row items-center gap-2 p-2 hover:bg-[#8A38F5]/20`}>
-            <img src={item.icon} />
+            <img src={item.icon} alt={`${item.icon} icon`}/>
             <Link href={item.ref} className="text-muted font-sans ">
               {item.nav}
             </Link>
