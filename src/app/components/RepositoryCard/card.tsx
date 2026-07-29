@@ -64,15 +64,13 @@ export default function RepositoryCard({
         onClick={() => {
           setStarred(!starred);
         }}
-        className={`${starred ? "bg-[#D29922]/20 border-[#D29922] text-[#D29922]" : "bg-[#212830] border-[#3d444d] text-[#9198A1]"} cursor-pointer absolute flex bottom-4 items-center justify-between border-1 rounded-lg h-10 w-[55px]`}>
+        className={`${starred ? "bg-[#D29922]/20 border-[#D29922] text-[#D29922]" : "bg-[#212830] border-[#3d444d] text-[#9198A1]"} cursor-pointer flex flex-row bottom-4 items-center justify-between border-1 rounded-lg h-10 gap-2 max-w-fit p-2`}>
         {starred ? (
-          <FaStar className="text-[#FFCC00] w-4.5 h-4.5 ml-2" />
+          <FaStar className="text-[#FFCC00] w-4.5 h-4.5" />
         ) : (
-          <FaRegStar className="text-[#9198A1] w-4.5 h-4.5 ml-2" />
+          <FaRegStar className="text-[#9198A1] w-4.5 h-4.5" />
         )}
-        <span className="mr-2">
-          {(stargazers_count ?? 0) + (starred ? 1 : 0)}
-        </span>
+        <span>{(stargazers_count ?? 0) + (starred ? 1 : 0)}</span>
 
         {/* Cagaio, acho que finalmente entendi ??. Se stargazers_count vir como null ou undefined da API, 
         então vai ficar como 0. Se estiver marcado então é contado + 1 */}
