@@ -7,4 +7,6 @@ export interface ProfileProps {
   following: number | null;
   location: string | null;
   company: string | null;
+  public_repos: number | null;
+  blog: string | null;
 }

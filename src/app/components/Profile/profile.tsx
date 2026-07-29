@@ -36,6 +36,7 @@ export default function Profile() {
         </p>
 
         <div className="flex flex-col gap-1">
+          <p className="text-[14px]">{profile?.blog}</p>
           <p className="pt-4 text-[14px]">{profile?.company}</p>
           <p className="text-[14px]">{profile?.location}</p>
         </div>
