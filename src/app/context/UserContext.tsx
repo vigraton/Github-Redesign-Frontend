@@ -1,6 +1,12 @@
 "use client";
 
-import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+  type ReactNode,
+} from "react";
 import type { ProfileProps } from "../components/Profile/types";
 import type { Repository } from "../components/RepositoryCard/types";
 import type { UserContextType } from "./types";
@@ -29,9 +35,7 @@ export function UserProvider({ children }: { children: ReactNode }) {
   async function fetchUserRepos(username: string) {
     setIsLoading(true);
     try {
-      await fetchUsername(username)
       const response = await profileApi.getUserRepos(username);
-      console.log("REPOS RESPONSE: ", response)
 
       setRepos(response);
       return response;
@@ -45,7 +49,13 @@ export function UserProvider({ children }: { children: ReactNode }) {
 
   return (
     <UserContext.Provider
-      value={{ isLoading, profile: profile!, fetchUsername, fetchUserRepos, repos: repos }}>
+      value={{
+        isLoading,
+        profile: profile!,
+        fetchUsername,
+        fetchUserRepos,
+        repos: repos,
+      }}>
       {children}
     </UserContext.Provider>
   );

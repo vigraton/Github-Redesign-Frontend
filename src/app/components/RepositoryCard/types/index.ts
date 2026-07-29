@@ -12,7 +12,7 @@ export const LANGUAGE_COLORS: Record<string, string> = {
   Go: "#00d5ff",
 };
 
-export interface Repository {
+export type Repository = {
   id: number;
   name: string;
   language: string;
@@ -20,4 +20,11 @@ export interface Repository {
   description?: string;
   stargazers_count: number
   visibility: "public" | "private";
+  owner: {
+    login: string
+  }
+}
+
+export interface Repos {
+  repos: Repository[]
 }

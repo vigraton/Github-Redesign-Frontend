@@ -1,13 +1,21 @@
 "use client";
 
+import { useEffect } from "react";
 import Header from "../components/Header/header";
 import Profile from "../components/Profile/profile";
 import RepositoryCard from "../components/RepositoryCard/card";
 import { useUserContext } from "../context/UserContext";
 
-export default function RepositoriesPage() {
-  const { repos } = useUserContext();
-  console.log("REPOS: ", repos)
+interface RepoPageProps {
+  username: string;
+}
+
+export default function RepositoriesPage({ username }: RepoPageProps) {
+  const { repos, fetchUserRepos } = useUserContext();
+
+  useEffect(() => {
+    if (username) fetchUserRepos(username);
+  }, [username]);
 
   return (
     <main className="pt-40 bg-[#212830] overflow-x-hidden flex flex-col justify-between gap-20">
