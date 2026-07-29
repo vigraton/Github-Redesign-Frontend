@@ -6,16 +6,16 @@ import Profile from "../components/Profile/profile";
 import RepositoryCard from "../components/RepositoryCard/card";
 import { useUserContext } from "../context/UserContext";
 
-export interface RepoPageProps {
+interface RepoPageProps {
   username: string;
 }
 
-export default function RepositoriesPage({ username }: RepoPageProps) {
+export function RepositoriesPage({ username }: RepoPageProps) {
   const { repos, fetchUserRepos } = useUserContext();
 
   useEffect(() => {
     if (username) fetchUserRepos(username);
-  }, []);
+  }, [username, fetchUserRepos]);
 
   return (
     <main className="pt-40 bg-[#212830] overflow-x-hidden flex flex-col justify-between gap-20">
