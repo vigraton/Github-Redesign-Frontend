@@ -23,11 +23,13 @@ export default function LoginPage() {
     },
   });
 
-  const { fetchUsername, isLoading } = useUserContext();
+  const { fetchUsername, fetchUserRepos, isLoading } = useUserContext();
 
   const handleUsername = async (data: UserSchemaType) => {
     try {
       await fetchUsername(data.username);
+      await fetchUserRepos(data.username)
+            
       setUser(data.username);
       router.push("/repositories");
 

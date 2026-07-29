@@ -3,15 +3,10 @@
 import Header from "../components/Header/header";
 import Profile from "../components/Profile/profile";
 import RepositoryCard from "../components/RepositoryCard/card";
-import { useEffect } from "react";
-import { useRepos } from "../hooks/useRepos";
+import { useUserContext } from "../context/UserContext";
 
 export default function RepositoriesPage() {
-  const { getRepos, repos } = useRepos();
-
-  useEffect(() => {
-    getRepos();
-  }, [getRepos]);
+  const { repos } = useUserContext();
 
   return (
     <main className="pt-40 bg-[#212830] overflow-x-hidden flex flex-col justify-between gap-20">

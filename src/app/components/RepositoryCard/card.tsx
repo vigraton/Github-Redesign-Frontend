@@ -13,6 +13,7 @@ export default function RepositoryCard({
   description,
   stargazers_count,
   visibility,
+  owner,
 }: Repository) {
   const languageColor = LANGUAGE_COLORS[language] || null;
   const [starred, setStarred] = useState(false);
@@ -28,7 +29,9 @@ export default function RepositoryCard({
   }
 
   return (
-    <div className="flex flex-col relative border-2 border-[#3d444d] bg-[#212830] rounded-2xl p-4 h-45 w-75">
+    <div
+      className="flex flex-col relative border-2 border-[#3d444d] bg-[#212830] rounded-2xl p-4 h-45 w-75"
+      key={owner.login}>
       <div className="space-y-3">
         <div className="flex flex-row items-top justify-between items-start">
           <h2 className="h-fit truncate text-wrap line-clamp-2 text-[#418BE6] font-semibold text-[18px]">

@@ -49,7 +49,7 @@ export default function Header() {
   return (
     <div className="bg-[#151b23] w-full h-28 fixed top-0 z-10 flex flex-col justify-between">
       <div className="flex flex-row justify-between items-center pl-6 pr-6 pt-4">
-        <div className="flex flex-row gap-2 items-center">
+        <div className="flex flex-row gap-4 items-center">
           <img
             src="/github-icon.svg"
             alt="github icon"
@@ -72,7 +72,7 @@ export default function Header() {
           <div
             key={item.id}
             className={`${item.isActive ? "border-b-3 border-[#8A38F5]" : ""} rounded-tl-md rounded-tr-md flex flex-row items-center gap-2 p-2 hover:bg-[#8A38F5]/20`}>
-            <img src={item.icon} />
+            <img src={item.icon} alt={`${item.icon} icon`}/>
             <Link href={item.ref} className="text-muted font-sans ">
               {item.nav}
             </Link>

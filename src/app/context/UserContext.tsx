@@ -1,6 +1,3 @@
-// Contexto para puxar as informações do perfil do usuário (email, seguidores, login etc.)
-// e listar os repositórios deste usuário
-
 "use client";
 
 import {
@@ -10,6 +7,7 @@ import {
   type ReactNode,
 } from "react";
 import type { ProfileProps } from "../components/Profile/types";
+import type { Repository } from "../components/RepositoryCard/types";
 import type { UserContextType } from "./types";
 import { profileApi } from "../services/profile.api";
 
@@ -17,10 +15,11 @@ const UserContext = createContext<UserContextType | undefined>(undefined);
 
 export function UserProvider({ children }: { children: ReactNode }) {
   const [profile, setProfile] = useState<ProfileProps | null>(null);
+  const [repos, setRepos] = useState<Repository[]>([]);
   const [isLoading, setIsLoading] = useState(false);
 
   async function fetchUsername(username?: string) {
-    if (!username) return
+    if (!username) return;
     setIsLoading(true);
     try {
       const response = await profileApi.getUsername(username!);
@@ -32,9 +31,30 @@ export function UserProvider({ children }: { children: ReactNode }) {
     }
   }
 
+  async function fetchUserRepos(username: string) {
+    setIsLoading(true);
+    try {
+      const response = await profileApi.getUserRepos(username);
+
+      setRepos(response);
+      return response;
+
+    } catch (error) {
+      throw error;
+    } finally {
+      setIsLoading(false);
+    }
+  }
+
   return (
     <UserContext.Provider
-      value={{ isLoading, profile: profile!, fetchUsername }}>
+      value={{
+        isLoading,
+        profile: profile!,
+        fetchUsername,
+        fetchUserRepos,
+        repos: repos,
+      }}>
       {children}
     </UserContext.Provider>
   );
