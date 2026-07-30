@@ -6,6 +6,9 @@ const nextConfig: NextConfig = {
       new URL("https://avatars.githubusercontent.com/u/117688900?v=4"),
     ],
   },
+  experimental: {
+    globalNotFound: true,
+  },
 };
 
 export default nextConfig;
